@@ -6,51 +6,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CalculatorApp</title>
     <link
-      href="https://fonts.googleapis.com/css?family=Poppins:600"
+      href="https://fonts.googleapis.com/css?family=Jost:400"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <div class="wrapper">
-      <div class="container">
-        <div class="calculator">
-          <div class="calculator__background">
-            <img src="images/background.png" alt="" />
+    <div class="container">
+      <div class="calculator">
+        <div class="result">
+          <div class="history">
+            <p class="history-value"></p>
           </div>
+          <div class="output">
+            <p class="output-value"></p>
+          </div>
+        </div>
+        <div class="keyboard">
           <form>
             <div>
               <input type="text" name="display" />
             </div>
+            <!-- 1st row of buttons -->
             <div>
-              <input type="button" value="C" />
-              <input type="button" value="()" />
-              <input type="button" value="%" />
-              <input type="button" value="÷" />
+              <input type="button" value="C" id="operator" />
+              <input type="button" value="()" id="operator" />
+              <input type="button" value="%" id="operator" />
+              <input type="button" value="÷" id="operator" />
             </div>
+            <!-- 2nd row of buttons -->
             <div>
-              <input type="button" value="7" />
-              <input type="button" value="8" />
-              <input type="button" value="9" />
-              <input type="button" value="×" />
+              <input type="button" value="7" id="number" />
+              <input type="button" value="8" id="number" />
+              <input type="button" value="9" id="number" />
+              <input type="button" value="×" id="operator" />
             </div>
+            <!-- 3rd row of buttons -->
             <div>
-              <input type="button" value="4" />
-              <input type="button" value="5" />
-              <input type="button" value="6" />
-              <input type="button" value="-" />
+              <input type="button" value="4" id="number" />
+              <input type="button" value="5" id="number" />
+              <input type="button" value="6" id="number" />
+              <input type="button" value="-" id="operator" />
             </div>
+            <!-- 4th row of buttons -->
             <div>
-              <input type="button" value="1" />
-              <input type="button" value="2" />
-              <input type="button" value="3" />
-              <input type="button" value="+" />
+              <input type="button" value="1" id="number" />
+              <input type="button" value="2" id="number" />
+              <input type="button" value="3" id="number" />
+              <input type="button" value="+" id="operator" />
             </div>
+            <!-- 5th row of buttons -->
             <div>
-              <input type="button" value="+/-" />
-              <input type="button" value="0" />
-              <input type="button" value="." />
-              <input type="button" value="=" />
+              <input type="button" value="+/-" id="operator" />
+              <input type="button" value="0" id="number" />
+              <input type="button" value="." id="operator" />
+              <input type="button" value="=" id="equal" />
             </div>
           </form>
         </div>
