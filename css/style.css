@@ -5,7 +5,7 @@
 }
 /*---*/
 body {
-  font-family: "Jost", sans-serif;
+  font-family: "Poppins", sans-serif;
   background-color: #1e1e1e;
 }
 
@@ -19,14 +19,13 @@ body {
 }
 
 .calculator {
-  width: 320px;
-  height: 250px;
+  width: 340px;
+  height: 650px;
   background-color: #3e5d2d;
-  margin: 0 auto;
+  margin-top: 70px;
   top: 20px;
   position: relative;
   border-radius: 35px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .result {
@@ -43,32 +42,76 @@ body {
 .output {
   text-align: right;
   height: 60px;
-  margin: 10px 20px;
+  margin: 10px 25px;
   font-size: 30px;
 }
 
 .keyboard {
-  height: 400px;
+  height: auto;
+  width: fit-content;
+  margin: 0 auto;
 }
+
 #operator,
 #number,
 #equal {
-  width: 50px;
-  height: 50px;
-  margin: 15px;
+  width: 63px;
+  height: 63px;
+  margin: 8px;
   float: left;
-  border-radius: 50%;
+  border-radius: 35%;
   border-width: 0;
-  font-size: 15px;
+  font-size: 17px;
+  cursor: pointer;
+  font-family: "Poppins";
+  transition: 0.3s;
 }
 #number {
   background-color: #f7f1d6;
+  color: #466633;
+}
+#number:hover {
+  background-color: #f7e8be;
 }
 #operator {
-  background-color: #6a994e;
+  background-color: #699452;
+  color: #314723;
 }
+#operator:hover {
+  background-color: #72a756;
+}
+
 #equal {
-  background-color: #b86c4e;
+  background-color: #b76c4d;
+  color: #27381c;
+}
+#equal:hover {
+  background-color: #c47756;
+}
+#operator:hover,
+#number:hover,
+#equal:hover {
+  transition: 0.2s;
+  box-shadow: 0px 10px 14px -1px rgba(33, 52, 21, 0.2);
+}
+#operator:active,
+#number:active,
+#equal:active {
+  font-size: 13px;
+}
+
+#operations {
+  width: 110px;
+  height: 60px;
+  background-color: #f7f1d6;
+  color: #466633;
+  border-radius: 10%;
+  border-width: 0;
+  font-size: 17px;
+  cursor: pointer;
+  font-family: "Poppins";
+  transition: 0.3s;
+  margin: 8px;
 }
 .calculator form input {
 }
