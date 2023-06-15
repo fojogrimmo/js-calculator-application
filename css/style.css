@@ -30,6 +30,7 @@ body {
 
 .result {
   height: 120px;
+  padding-bottom: 20px;
 }
 .history {
   text-align: right;
@@ -37,13 +38,16 @@ body {
   margin: 0 20px;
   padding-top: 20px;
   font-size: 15px;
-  color: #82879e;
+  color: rgb(158, 146, 131);
 }
 .output {
   text-align: right;
-  height: 60px;
+  height: 65px;
   margin: 10px 25px;
   font-size: 30px;
+  color: antiquewhite;
+  background-color: #354b25;
+  padding: 15px 20px 0px 0px;
 }
 
 .keyboard {
@@ -52,9 +56,9 @@ body {
   margin: 0 auto;
 }
 
-#operator,
-#number,
-#equal {
+.operator,
+.number,
+.equal {
   width: 63px;
   height: 63px;
   margin: 8px;
@@ -66,18 +70,18 @@ body {
   font-family: "Poppins";
   transition: 0.3s;
 }
-#number {
+.number {
   background-color: #f7f1d6;
   color: #466633;
 }
-#number:hover {
+.number:hover {
   background-color: #f7e8be;
 }
-#operator {
+.operator {
   background-color: #699452;
   color: #314723;
 }
-#operator:hover {
+.operator:hover {
   background-color: #72a756;
 }
 
@@ -88,14 +92,14 @@ body {
 #equal:hover {
   background-color: #c47756;
 }
-#operator:hover,
-#number:hover,
+.operator:hover,
+.number:hover,
 #equal:hover {
   transition: 0.2s;
   box-shadow: 0px 10px 14px -1px rgba(33, 52, 21, 0.2);
 }
-#operator:active,
-#number:active,
+.operator:active,
+.number:active,
 #equal:active {
   font-size: 13px;
 }
