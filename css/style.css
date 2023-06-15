@@ -100,8 +100,14 @@ body {
   font-size: 13px;
 }
 
-#operations {
-  width: 110px;
+.buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.operations,
+.functions {
+  width: 100px;
   height: 60px;
   background-color: #f7f1d6;
   color: #466633;
@@ -110,8 +116,12 @@ body {
   font-size: 17px;
   cursor: pointer;
   font-family: "Poppins";
-  transition: 0.3s;
   margin: 8px;
+  text-align: center;
+  padding: 0px 15px 0px 20px;
+  transition: 0.3s;
 }
-.calculator form input {
+.operations:hover,
+.functions:hover {
+  background-color: #f7e8be;
 }
