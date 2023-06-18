@@ -10,7 +10,7 @@ body {
 }
 
 .container {
-  margin: 20px auto;
+  margin: 100px auto;
   width: 1000px;
   height: 550px;
   display: flex;
@@ -20,12 +20,13 @@ body {
 
 .calculator {
   width: 365px;
-  height: 650px;
+  height: 655px;
   background-color: #3e5d2d;
   margin-top: 70px;
   top: 20px;
   position: relative;
   border-radius: 35px;
+  box-shadow: 2px 4px 14px 6px rgba(94, 152, 63, 0.11);
 }
 
 .result {
