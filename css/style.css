@@ -19,7 +19,7 @@ body {
 }
 
 .calculator {
-  width: 340px;
+  width: 365px;
   height: 650px;
   background-color: #3e5d2d;
   margin-top: 70px;
@@ -48,6 +48,7 @@ body {
   color: antiquewhite;
   background-color: #354b25;
   padding: 15px 20px 0px 0px;
+  border-radius: 5px;
 }
 
 .keyboard {
@@ -59,8 +60,8 @@ body {
 .operator,
 .number,
 .equal {
-  width: 63px;
-  height: 63px;
+  width: 68px;
+  height: 68px;
   margin: 8px;
   float: left;
   border-radius: 35%;
@@ -111,7 +112,7 @@ body {
 
 .operations,
 .functions {
-  width: 100px;
+  width: 115px;
   height: 60px;
   background-color: #f7f1d6;
   color: #466633;
