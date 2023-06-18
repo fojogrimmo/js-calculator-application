@@ -1,12 +1,32 @@
 "use strict";
 
+const selectButtons = document.querySelectorAll(".btn-select");
+const keyboardItems = document.querySelectorAll(".keyboard-item");
+
+selectButtons.forEach(function (button) {
+  button.addEventListener("click", function () {
+    let currentButton = button;
+    let itemId = currentButton.getAttribute("data-btn");
+    let currentItem = document.querySelector(itemId);
+
+    selectButtons.forEach(function (button) {
+      button.classList.remove("active");
+    });
+    keyboardItems.forEach(function (button) {
+      button.classList.remove("active");
+    });
+    currentButton.classList.add("active");
+    currentItem.classList.add("active");
+  });
+});
+// ---
 const numberButtons = document.getElementsByClassName("number");
 const operatorButtons = document.getElementsByClassName("operator");
 const equalButton = document.getElementById("equal");
 
 const btnOperators = document.querySelectorAll(".operator");
 
-const btnNumbers = document.querySelectorAll(".btn-calculate");
+const btnNumbers = document.querySelectorAll(".number");
 
 btnNumbers.forEach((item) => {
   item.addEventListener("click", (e) => {

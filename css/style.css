@@ -110,8 +110,7 @@ body {
   justify-content: center;
 }
 
-.operations,
-.functions {
+.btn-select {
   width: 115px;
   height: 60px;
   background-color: #f7f1d6;
@@ -126,7 +125,17 @@ body {
   padding: 0px 15px 0px 20px;
   transition: 0.3s;
 }
-.operations:hover,
-.functions:hover {
+.btn-select:hover {
   background-color: #f7e8be;
+}
+.btn-select.active {
+  background-color: #f1dda5;
+}
+
+.keyboard-item {
+  display: none;
+}
+
+.keyboard-item.active {
+  display: block;
 }

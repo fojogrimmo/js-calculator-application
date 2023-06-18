@@ -23,15 +23,17 @@
           </div>
         </div>
         <div class="keyboard">
-          <div class="buttons">
-            <button class="operations">Operations</button>
-            <button class="functions" id="func">Functions</button>
+          <div class="select-buttons">
+            <button class="btn-select active" data-btn="#item_1">
+              Operations
+            </button>
+            <button class="btn-select" data-btn="#item_2">Functions</button>
           </div>
           <!-- Operations menu -->
-          <div class="keyboard-operations">
+          <div class="keyboard-item active" id="item_1">
             <!-- 1st row of buttons -->
             <div>
-              <button btn-calculate class="operator" id="clear">C</button>
+              <button class="operator" id="clear">C</button>
               <button class="operator" id="backspace">CE</button>
               <button class="operator" id="%">%</button>
               <button class="operator" id="/">÷</button>
@@ -66,44 +68,43 @@
             </div>
           </div>
 
-          <!-- Functions Menu -->
-          <form class="keyboard-functions">
+          <div class="keyboard-item" id="item_2">
             <!-- 1st row of buttons -->
             <div>
-              <input type="button" value="Exp(x)" class="operator" id="" />
-              <input type="button" value="Ln(x)" class="operator" id="" />
-              <input type="button" value="Log(x)" class="operator" id="" />
-              <input type="button" value="|x|" class="operator" id="" />
+              <button class="operator" id="exp">Exp(x)</button>
+              <button class="operator" id="ln">Ln(x)</button>
+              <button class="operator" id="log">Log(x)</button>
+              <button class="operator" id="mod">|x|</button>
             </div>
             <!-- 2nd row of buttons -->
             <div>
-              <input type="button" value="Sin(x)" class="operator" id="" />
-              <input type="button" value="Cos(x)" class="operator" id="" />
-              <input type="button" value="Tan(x)" class="operator" id="" />
-              <input type="button" value="Cot(x)" class="operator" id="" />
+              <button class="operator" id="sin">Sin(x)</button>
+              <button class="operator" id="cos">Cos(x)</button>
+              <button class="operator" id="tan">Tan(x)</button>
+              <button class="operator" id="cot">Cot(x)</button>
             </div>
             <!-- 3rd row of buttons -->
             <div>
-              <input type="button" value="Asin(x)" class="operator" id="" />
-              <input type="button" value="Acos(x)" class="operator" id="" />
+              <button class="operator" id="asin">Asin(x)</button>
+              <button class="operator" id="acos">Acos(x)</button>
+              <button class="operator" id="atan">Atan(x)</button>
+              <button class="operator" id="acot">Acot(x)</button>
             </div>
             <!-- 4th row of buttons -->
             <div>
-              <input type="button" value="Atan(x)" class="operator" id="" />
-              <input type="button" value="Acot(x)" class="operator" id="" />
+              <button class="operator" id="sqrt">√(x)</button>
+              <button class="operator" id="power-two">x²</button>
+              <button class="operator" id="1/x">1/x</button>
+              <button class="operator" id="pi"><b>π</b></button>
             </div>
             <!-- 5th row of buttons -->
             <div>
-              <input type="button" value="√(x)" class="operator" id="" />
-              <input type="button" value="x²" class="operator" id="^" />
-              <input type="button" value="1/x" class="operator" id="" />
-              <input type="button" value="π" class="operator" id="" />
+              <button class="operator" id="">()</button>
+              <button class="operator" id="">0</button>
+              <button class="operator" id="">.</button>
+              <button class="operator" id="equal">=</button>
             </div>
-            <!-- 6th row of buttons -->
-            <div>
-              <input type="button" value="=" class="operator" id="equal" />
-            </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>
