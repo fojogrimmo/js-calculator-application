@@ -36,7 +36,7 @@ body {
 .history {
   text-align: right;
   height: 20px;
-  margin: 0 20px;
+  margin: 0 25px;
   padding-top: 20px;
   font-size: 15px;
   color: rgb(158, 146, 131);
@@ -44,7 +44,7 @@ body {
 .output {
   text-align: right;
   height: 65px;
-  margin: 10px 25px;
+  margin: 5px 25px;
   font-size: 30px;
   color: antiquewhite;
   background-color: #354b25;
@@ -71,6 +71,13 @@ body {
   cursor: pointer;
   font-family: "Poppins";
   transition: 0.3s;
+}
+.number.period {
+  background-color: #699452;
+  color: #314723;
+}
+.number.period:hover {
+  background-color: #72a756;
 }
 .number {
   background-color: #f7f1d6;
