@@ -20,100 +20,91 @@ selectButtons.forEach(function (button) {
   });
 });
 // ---
-const numberButtons = document.getElementsByClassName("number");
-const operatorButtons = document.getElementsByClassName("operator");
+class Calculator {
+  constructor(previousOperandTextElement, currentOperandTextElement) {
+    this.previousOperandTextElement = previousOperandTextElement;
+    this.currentOperandTextElement = currentOperandTextElement;
+    this.clear();
+  }
+
+  clear() {
+    this.currentOperand = "";
+    this.previousOperand = "";
+    this.operation = undefined;
+  }
+  delete() {}
+  appendNumber(number) {
+    if (number === "." && this.currentOperand.includes(".")) return;
+    this.currentOperand = this.currentOperand.toString() + number.toString();
+  }
+
+  chooseOperation(operation) {
+    if (this.currentOperand === "") return;
+    if (this.previousOperand !== "") {
+      this.compute();
+    }
+    this.operation = operation;
+    this.previousOperand = this.currentOperand;
+    this.currentOperand = "";
+  }
+  compute() {
+    let computation;
+    const prev = parseFloat(this.previousOperand);
+    const current = parseFloat(this.currentOperand);
+    if (isNaN(prev) || isNaN(current)) return;
+    switch (this.operation) {
+      case "+":
+        computation = prev + current;
+        break;
+      case "-":
+        computation = prev - current;
+        break;
+      case "×":
+        computation = prev * current;
+        break;
+      case "÷":
+        computation = prev / current;
+        break;
+      default:
+        return;
+    }
+    this.currentOperand = computation;
+    this.operation = undefined;
+    this.previousOperand = "";
+  }
+  updateDisplay() {
+    this.currentOperandTextElement.innerText = this.currentOperand;
+    this.previousOperandTextElement.innerText = this.previousOperand;
+  }
+}
+
+const numberButtons = document.querySelectorAll(".number");
+const operatorButtons = document.querySelectorAll(".operator");
 const equalButton = document.getElementById("equal");
+const allClearButton = document.getElementById("clear");
+const deleteButton = document.getElementById("backspace");
+const previousOperandTextElement = document.getElementById("history-value");
+const currentOperandTextElement = document.getElementById("output-value");
 
-const btnOperators = document.querySelectorAll(".operator");
+const calculator = new Calculator(
+  previousOperandTextElement,
+  currentOperandTextElement
+);
 
-const btnNumbers = document.querySelectorAll(".number");
-
-btnNumbers.forEach((item) => {
-  item.addEventListener("click", (e) => {
-    let itemText = e.target.textContent;
-    console.log(itemText);
+numberButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    calculator.appendNumber(button.innerText);
+    calculator.updateDisplay();
   });
 });
-// function getHistory() {
-//   return document.getElementById("history-value").innerText;
-// }
+operatorButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    calculator.chooseOperation(button.innerText);
+    calculator.updateDisplay();
+  });
+});
 
-// function printHistory(num) {
-//   document.getElementById("history-value").innerText = num;
-// }
-
-// function getOutput() {
-//   return document.getElementById("output-value").innerText;
-// }
-
-// function printOutput(num) {
-//   if (num == "") {
-//     document.getElementById("output-value").innerText = num;
-//   } else {
-//     document.getElementById("output-value").innerText = getFormattedNumber(num);
-//   }
-// }
-
-// function getFormattedNumber(num) {
-//   if (num == "-") {
-//     return "";
-//   }
-//   var n = Number(num);
-//   var value = n.toLocaleString("en");
-//   return value;
-// }
-
-// // FUNCTION TO CLEAR COMAS IN OUTPUT FIELD
-// function reverseNumberFormat(num) {
-//   return Number(num.replace(/,/g, ""));
-// }
-
-// var operator = document.getElementsByClassName("operator");
-// for (var i = 0; i < operator.length; i++) {
-//   operator[i].addEventListener("click", function () {
-//     if (this.id == "clear") {
-//       printHistory("");
-//       printOutput("");
-//     } else if (this.id == "backspace") {
-//       var output = reverseNumberFormat(getOutput()).toString();
-//       if (output) {
-//         // if output has a value
-//         output = output.substr(0, output.length - 1);
-//         printOutput(output);
-//       }
-//     } else {
-//       var output = getOutput();
-//       var history = getHistory();
-//       if (output == "" && history != "") {
-//         if (isNaN(history[history.length - 1])) {
-//           history = history.substr(0, history.length - 1);
-//         }
-//       }
-//       if (output != "" || history != "") {
-//         output = output == "" ? output : reverseNumberFormat(output);
-//         history = history + output;
-//         if (this.id == "equal") {
-//           var result = eval(history);
-//           printOutput(result);
-//           printHistory("");
-//         } else {
-//           history = history + this.id;
-//           printHistory(history);
-//           printOutput("");
-//         }
-//       }
-//     }
-//   });
-// }
-
-// var number = document.getElementsByClassName("number");
-// for (var i = 0; i < number.length; i++) {
-//   number[i].addEventListener("click", function () {
-//     var output = reverseNumberFormat(getOutput());
-//     if (output != NaN) {
-//       // if output is a number
-//       output = output + this.id;
-//       printOutput(output);
-//     }
-//   });
-// }
+equalButton.addEventListener("click", (button) => {
+  calculator.compute();
+  calculator.updateDisplay();
+});
