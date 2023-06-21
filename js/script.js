@@ -1,58 +1,7 @@
 "use strict";
 
-const display = document.querySelector(".output");
-let buttons = Array.from(document.querySelectorAll("[data-button]"));
-let parenthesesCounter = 0;
+// For selecting between operations/functions
 
-buttons.map((button) => {
-  button.addEventListener("click", (e) => {
-    switch (e.target.innerText) {
-      case "C":
-        display.innerText = "";
-        parenthesesCounter = 0;
-        break;
-      case "DEL":
-        if (display.innerText) {
-          display.innerText = display.innerText.slice(0, -1);
-        }
-        break;
-      case "=":
-        display.innerText = eval(display.innerText);
-        break;
-      case "×":
-        display.innerText += "*";
-        break;
-      case "÷":
-        display.innerText += "/";
-        break;
-      case "()":
-        const openingParenthesis = "(";
-        const closingParenthesis = ")";
-
-        if (parenthesesCounter % 2 === 0) {
-          display.innerText += openingParenthesis;
-          parenthesesCounter++;
-          console.log(parenthesesCounter);
-        } else {
-          display.innerText += closingParenthesis;
-          parenthesesCounter--;
-          console.log(parenthesesCounter);
-        }
-        break;
-      case "%":
-        break;
-
-      case ".":
-        const currentNumber = display.innerText.split(/[+\-*/]/).pop();
-        if (!currentNumber.includes(".")) {
-          display.innerText += ".";
-        }
-        break;
-      default:
-        display.innerText += e.target.innerText;
-    }
-  });
-});
 const selectButtons = document.querySelectorAll(".btn-select");
 const keyboardItems = document.querySelectorAll(".keyboard-item");
 
@@ -72,6 +21,76 @@ selectButtons.forEach(function (button) {
     currentItem.classList.add("active");
   });
 });
+// -----
+const display = document.querySelector(".output");
+let buttons = Array.from(document.querySelectorAll("[data-button]"));
+let parenthesesCounter = 0;
+
+buttons.map((button) => {
+  button.addEventListener("click", (e) => {
+    switch (e.target.innerText) {
+      case "C":
+        display.innerText = "";
+        parenthesesCounter = 0;
+        break;
+      case "DEL":
+        if (display.innerText) {
+          display.innerText = display.innerText.slice(0, -1);
+        }
+        break;
+      case "=":
+        display.innerText = eval(display.innerText.replace("%", "/100"));
+        break;
+      case "×":
+        display.innerText += "*";
+        break;
+      case "÷":
+        display.innerText += "/";
+        break;
+      case "()":
+        const openingParenthesis = "(";
+        const closingParenthesis = ")";
+
+        if (parenthesesCounter % 2 === 0) {
+          display.innerText += openingParenthesis;
+          parenthesesCounter++;
+        } else {
+          display.innerText += closingParenthesis;
+          parenthesesCounter--;
+        }
+        break;
+      case ".":
+        const currentNumber = display.innerText.split(/[+\-*/]/).pop();
+        if (!currentNumber.includes(".")) {
+          display.innerText += ".";
+        }
+        break;
+      case "Exp(x)":
+        display.innerText += "Math.exp(";
+        parenthesesCounter++;
+        break;
+      case "Ln(x)":
+        display.innerText += "Math.log(";
+        parenthesesCounter++;
+        break;
+      case "Sin(x)":
+        display.innerText += "Math.sin(";
+        parenthesesCounter++;
+        break;
+      case "Cos(x)":
+        display.innerText += "Math.cos(";
+        parenthesesCounter++;
+        break;
+      case "π":
+        const piValue = Math.PI;
+        display.innerText += piValue.toFixed(5);
+        break;
+      default:
+        display.innerText += e.target.innerText;
+    }
+  });
+});
+
 // ---
 // class Calculator {
 //   constructor(previousOperandTextElement, currentOperandTextElement) {
