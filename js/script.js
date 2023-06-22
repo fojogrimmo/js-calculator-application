@@ -93,6 +93,7 @@ buttons.map((button) => {
         display.innerText += "Math.abs(";
         parenthesesCounter++;
         break;
+
       case "Sin(x)":
         display.innerText += "Math.sin(";
         parenthesesCounter++;
@@ -106,6 +107,25 @@ buttons.map((button) => {
         parenthesesCounter++;
         break;
       case "Cot(x)":
+        display.innerText += "1 / Math.tan(";
+        parenthesesCounter++;
+        break;
+
+      case "Asin(x)":
+        display.innerText += "Math.asin(";
+        parenthesesCounter++;
+        break;
+      case "Acos(x)":
+        display.innerText += "Math.acos(";
+        parenthesesCounter++;
+        break;
+      case "Atan(x)":
+        display.innerText += "Math.atan(";
+        parenthesesCounter++;
+        break;
+      case "e":
+        const eNumber = Math.E;
+        display.innerText += eNumber.toFixed(5);
         break;
       case "√(x)":
         display.innerText += "Math.sqrt(";
@@ -125,9 +145,6 @@ buttons.map((button) => {
         break;
       case "n!":
         display.innerText += "!";
-        //   const number = parseFloat(display.innerText);
-        //   const factorial = findFactorial(number);
-        //   display.innerText = `${factorial}`;
         break;
       case "xy":
         display.innerText += "^";
