@@ -51,7 +51,20 @@ buttons.map((button) => {
         expression = expression.replace(/%/g, "/100");
         expression = expression.replace(/(\d+)!/g, "findFactorial($1)");
 
-        display.innerText = eval(expression);
+        try {
+          const result = eval(expression);
+          if (isNaN(result) || !isFinite(result)) {
+            display.innerText = "Error";
+          } else {
+            display.innerText = result;
+          }
+        } catch (error) {
+          if (error instanceof SyntaxError) {
+            display.innerText = "Error";
+          } else {
+            throw error;
+          }
+        }
         break;
       case "×":
         display.innerText += "*";
