@@ -35,6 +35,9 @@ function findFactorial(num) {
 
 buttons.map((button) => {
   button.addEventListener("click", (e) => {
+    if (display.innerText === "Error") {
+      display.innerText = "";
+    }
     switch (e.target.innerText) {
       case "C":
         display.innerText = "";
