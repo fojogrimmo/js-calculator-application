@@ -34,6 +34,14 @@ function findFactorial(num) {
   }
 }
 
+function calculatePercentage(number, percentage) {
+  return (number * percentage) / 100;
+}
+
+function isOperator(value) {
+  return ["+", "-", "×", "÷"].includes(value);
+}
+
 buttons.map((button) => {
   button.addEventListener("click", (e) => {
     if (display.innerText === "Error") {
@@ -56,25 +64,45 @@ buttons.map((button) => {
           .replace(/×/g, "*")
           .replace(/÷/g, "/")
           .replace(/\^/g, "**")
-          .replace(/%/g, "/100")
+          // .replace(/%/g, "/100")
           .replace(/(\d+)!/g, "findFactorial($1)");
 
         try {
           const result = eval(expression);
           if (isNaN(result) || !isFinite(result)) {
             display.innerText = "Error";
-            console.log("isNaN(result) || !isFinite(result");
           } else {
             display.innerText = result;
           }
         } catch (error) {
           if (error instanceof SyntaxError) {
             display.innerText = "Error";
-            console.log("error instanceof SyntaxError");
           } else {
             throw error;
           }
         }
+        break;
+      case "%":
+        const expressionParts = display.innerText.split(/[-+×÷]/);
+        const lastNumber = expressionParts[expressionParts.length - 1];
+        const percentage = parseFloat(lastNumber);
+        const previousNumber = parseFloat(expressionParts[0]);
+        const operand = display.innerText.match(/[+-]/);
+        let result;
+
+        if (expressionParts.length < 2) {
+          result = previousNumber;
+        } else if (operand && operand[0] === "+") {
+          result =
+            previousNumber + calculatePercentage(previousNumber, percentage);
+        } else if (operand && operand[0] === "-") {
+          result =
+            previousNumber - calculatePercentage(previousNumber, percentage);
+        } else {
+          result = calculatePercentage(previousNumber, percentage);
+        }
+
+        display.innerText = result;
         break;
       case "×":
       case "÷":
@@ -194,7 +222,3 @@ buttons.map((button) => {
     }
   });
 });
-
-function isOperator(value) {
-  return ["+", "-", "×", "÷"].includes(value);
-}
