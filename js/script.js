@@ -25,6 +25,7 @@ selectButtons.forEach(function (button) {
 const display = document.querySelector(".output");
 let buttons = Array.from(document.querySelectorAll("[data-button]"));
 let parenthesesCounter = 0;
+let lastInputIsOperator = false;
 
 function findFactorial(num) {
   if (num === 0 || num === 1) return 1;
@@ -37,7 +38,9 @@ buttons.map((button) => {
   button.addEventListener("click", (e) => {
     if (display.innerText === "Error") {
       display.innerText = "";
+      parenthesesCounter = 0;
     }
+
     switch (e.target.innerText) {
       case "C":
         display.innerText = "";
@@ -49,24 +52,40 @@ buttons.map((button) => {
         }
         break;
       case "=":
-        let expression = display.innerText;
-        expression = expression.replace(/\^/g, "**");
-        expression = expression.replace(/%/g, "/100");
-        expression = expression.replace(/(\d+)!/g, "findFactorial($1)");
+        let expression = display.innerText
+          .replace(/×/g, "*")
+          .replace(/÷/g, "/")
+          .replace(/\^/g, "**")
+          .replace(/%/g, "/100")
+          .replace(/(\d+)!/g, "findFactorial($1)");
 
         try {
           const result = eval(expression);
           if (isNaN(result) || !isFinite(result)) {
             display.innerText = "Error";
+            console.log("isNaN(result) || !isFinite(result");
           } else {
             display.innerText = result;
           }
         } catch (error) {
           if (error instanceof SyntaxError) {
             display.innerText = "Error";
+            console.log("error instanceof SyntaxError");
           } else {
             throw error;
           }
+        }
+        break;
+      case "×":
+      case "÷":
+      case "+":
+      case "-":
+        if (!lastInputIsOperator) {
+          display.innerText += e.target.innerText;
+          lastInputIsOperator = true;
+        } else {
+          display.innerText =
+            display.innerText.slice(0, -1) + e.target.innerText;
         }
         break;
       case "×":
@@ -170,6 +189,12 @@ buttons.map((button) => {
         break;
       default:
         display.innerText += e.target.innerText;
+        lastInputIsOperator = false;
+        break;
     }
   });
 });
+
+function isOperator(value) {
+  return ["+", "-", "×", "÷"].includes(value);
+}
