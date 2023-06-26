@@ -142,3 +142,11 @@ body {
 .keyboard-item.active {
   display: block;
 }
+/* --- */
+.hidden {
+  opacity: 0;
+  transition: all 1s;
+}
+.show {
+  opacity: 1;
+}
