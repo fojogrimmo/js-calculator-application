@@ -1,7 +1,24 @@
 "use strict";
 
-// For selecting between operations/functions
+// For smooth animation
+const handleIntersection = (entries) => {
+  entries.forEach((entry) => {
+    console.log(entry);
+    if (entry.isIntersecting) {
+      entry.target.classList.add("show");
+    }
+  });
+};
+const observeHiddenElement = () => {
+  const observer = new IntersectionObserver(handleIntersection);
 
+  const hiddenElements = document.querySelectorAll(".hidden");
+  hiddenElements.forEach((el) => observer.observe(el));
+};
+
+observeHiddenElement();
+
+// For selecting between operations/functions
 const selectButtons = document.querySelectorAll(".btn-select");
 const keyboardItems = document.querySelectorAll(".keyboard-item");
 
@@ -21,9 +38,10 @@ selectButtons.forEach(function (button) {
     currentItem.classList.add("active");
   });
 });
+
 // -----
 const display = document.querySelector(".output");
-let buttons = Array.from(document.querySelectorAll("[data-button]"));
+let buttons = [...document.querySelectorAll("[data-button]")];
 let parenthesesCounter = 0;
 let lastInputIsOperator = false;
 
@@ -64,7 +82,6 @@ buttons.map((button) => {
           .replace(/×/g, "*")
           .replace(/÷/g, "/")
           .replace(/\^/g, "**")
-          // .replace(/%/g, "/100")
           .replace(/(\d+)!/g, "findFactorial($1)");
 
         try {
