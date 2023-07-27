@@ -1,37 +1,7 @@
 "use strict";
 
-class SelectScreen {
-  constructor() {
-    this.selectButtons = document.querySelectorAll(".btn-select");
-    this.keyboardItems = document.querySelectorAll(".keyboard-item");
-
-    this.attachEventListeners();
-  }
-
-  attachEventListeners() {
-    this.selectButtons.forEach((button) => {
-      button.addEventListener("click", () => this.handleButtonClick(button));
-    });
-  }
-
-  handleButtonClick(selectedButton) {
-    const itemId = selectedButton.getAttribute("data-btn");
-    const currentItem = document.querySelector(itemId);
-
-    this.selectButtons.forEach((button) => {
-      button.classList.remove("active");
-    });
-
-    this.keyboardItems.forEach((item) => {
-      item.classList.remove("active");
-    });
-
-    selectedButton.classList.add("active");
-    currentItem.classList.add("active");
-  }
-}
-
-const screenSelector = new SelectScreen();
+import SelectTab from "./select-tab.js";
+new SelectTab();
 
 const display = document.querySelector(".output");
 let buttons = [...document.querySelectorAll("[data-button]")];

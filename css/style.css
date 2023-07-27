@@ -89,22 +89,22 @@ body {
   background-color: #72a756;
 }
 
-#equal {
+.equal {
   background-color: #b76c4d;
   color: #27381c;
 }
-#equal:hover {
+.equal:hover {
   background-color: #c47756;
 }
 .operator:hover,
 .number:hover,
-#equal:hover {
+.equal:hover {
   transition: 0.2s;
   box-shadow: 0px 10px 14px -1px rgba(33, 52, 21, 0.2);
 }
 .operator:active,
 .number:active,
-#equal:active {
+.equal:active {
   font-size: 13px;
 }
 
