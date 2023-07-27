@@ -1,45 +1,38 @@
 "use strict";
 
-// For smooth animation
-const handleIntersection = (entries) => {
-  entries.forEach((entry) => {
-    console.log(entry);
-    if (entry.isIntersecting) {
-      entry.target.classList.add("show");
-    }
-  });
-};
-const observeHiddenElement = () => {
-  const observer = new IntersectionObserver(handleIntersection);
+class SelectScreen {
+  constructor() {
+    this.selectButtons = document.querySelectorAll(".btn-select");
+    this.keyboardItems = document.querySelectorAll(".keyboard-item");
 
-  const hiddenElements = document.querySelectorAll(".hidden");
-  hiddenElements.forEach((el) => observer.observe(el));
-};
+    this.attachEventListeners();
+  }
 
-observeHiddenElement();
+  attachEventListeners() {
+    this.selectButtons.forEach((button) => {
+      button.addEventListener("click", () => this.handleButtonClick(button));
+    });
+  }
 
-// For selecting between operations/functions
-const selectButtons = document.querySelectorAll(".btn-select");
-const keyboardItems = document.querySelectorAll(".keyboard-item");
+  handleButtonClick(selectedButton) {
+    const itemId = selectedButton.getAttribute("data-btn");
+    const currentItem = document.querySelector(itemId);
 
-selectButtons.forEach(function (button) {
-  button.addEventListener("click", function () {
-    let currentButton = button;
-    let itemId = currentButton.getAttribute("data-btn");
-    let currentItem = document.querySelector(itemId);
-
-    selectButtons.forEach(function (button) {
+    this.selectButtons.forEach((button) => {
       button.classList.remove("active");
     });
-    keyboardItems.forEach(function (button) {
-      button.classList.remove("active");
+
+    this.keyboardItems.forEach((item) => {
+      item.classList.remove("active");
     });
-    currentButton.classList.add("active");
+
+    selectedButton.classList.add("active");
     currentItem.classList.add("active");
-  });
-});
+  }
+}
 
-// -----
+const screenSelector = new SelectScreen();
+
 const display = document.querySelector(".output");
 let buttons = [...document.querySelectorAll("[data-button]")];
 let parenthesesCounter = 0;
