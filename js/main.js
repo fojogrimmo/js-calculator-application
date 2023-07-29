@@ -2,6 +2,7 @@
 
 import SelectTab from "./select-tab.js";
 import PercentageCalculator from "./percentage.js";
+import FactorialCalculator from "./factorial.js";
 new SelectTab();
 
 class Calculator {
@@ -18,31 +19,6 @@ class Calculator {
     this.buttons.forEach((button) => {
       button.addEventListener("click", (e) => this.handleButtonClick(e));
     });
-  }
-
-  evaluateExpression() {
-    const expression = this.display.innerText
-      .replace(/×/g, "*")
-      .replace(/÷/g, "/")
-      .replace(/\^/g, "**")
-      .replace(/(\d+)!/g, "this.findFactorial($1)");
-
-    try {
-      const resultFn = new Function(`return ${expression}`);
-      const result = resultFn();
-
-      if (isNaN(result) || !isFinite(result)) {
-        this.display.innerText = "Error";
-      } else {
-        this.display.innerText = result;
-      }
-    } catch (error) {
-      if (error instanceof SyntaxError) {
-        this.display.innerText = "Error";
-      } else {
-        throw error;
-      }
-    }
   }
 
   handleButtonClick(e) {
@@ -67,10 +43,40 @@ class Calculator {
         const percentageCalculator = new PercentageCalculator(this.display);
         percentageCalculator.calculatePercentage();
         break;
+      case "n!":
+        this.display.innerText += "!";
+        break;
       default:
         this.display.innerText += e.target.innerText;
         this.lastInputIsOperator = false;
         break;
+    }
+  }
+
+  evaluateExpression() {
+    const expression = this.display.innerText
+      .replace(/×/g, "*")
+      .replace(/÷/g, "/")
+      .replace(/\^/g, "**")
+      .replace(/(\d+)!/g, (match, num) =>
+        FactorialCalculator.findFactorial(parseInt(num))
+      );
+
+    try {
+      const resultFn = new Function(`return ${expression}`);
+      const result = resultFn();
+
+      if (isNaN(result) || !isFinite(result)) {
+        this.display.innerText = "Error";
+      } else {
+        this.display.innerText = result;
+      }
+    } catch (error) {
+      if (error instanceof SyntaxError) {
+        this.display.innerText = "Error";
+      } else {
+        throw error;
+      }
     }
   }
 }
@@ -79,13 +85,6 @@ new Calculator();
 // let buttons = [...document.querySelectorAll("[data-button]")];
 // let parenthesesCounter = 0;
 // let lastInputIsOperator = false;
-
-// function findFactorial(num) {
-//   if (num === 0 || num === 1) return 1;
-//   else {
-//     return (num = num * findFactorial(num - 1));
-//   }
-// }
 
 // function calculatePercentage(number, percentage) {
 //   return (number * percentage) / 100;
